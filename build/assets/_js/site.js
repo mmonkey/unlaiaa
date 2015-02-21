@@ -26,11 +26,11 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 
 $(document).ready(function() {
 
-	//=========================================
+  //=========================================
   //  NAVIGATION
   //=========================================
   // Nav toggle
-	$('.nav-toggle').click(function() {
+  $('.nav-toggle').click(function() {
     $('nav.dropdown').slideToggle(300);
 
     if( $(this).hasClass('fa-bars') ) {
@@ -38,23 +38,58 @@ $(document).ready(function() {
     } else {
       $(this).removeClass('fa-close').addClass('fa-bars');
     }
-	});
+  });
 
   //=========================================
   //  OUR TEAM
   //=========================================
-  // Replace .member-photo with image source
-  $('.member-photo').each(function() {
-    var src = $(this).find('img').attr('src');
-    $(this).css('background', 'url(' + src + ') no-repeat center center');
-  });
-  // match .member-photo height to it's width & on window resize 
+  var teamFilter = '';
+
+  function filterTeams(team) {
+
+    if(team.toUpperCase() !== 'ALL MEMBERS') {
+      updateValue( $('.team-member-filter'), team);
+
+      $('.member-title').each(function() {
+        if($(this).text().toUpperCase().indexOf(team) > -1) {
+          $(this).closest('.member-group').show();
+        } else {
+          $(this).closest('.member-group').hide();
+        }
+      });
+    } else {
+      updateValue($('.team-member-filter'), 'Search...');
+      $('.member-group').show();
+    }
+    teamFilter = team.toUpperCase();
+  }
+
+  // Keep team member photos height and width in sync
   $('.team-member-photo').height( $('.team-member-photo').width() );
   $(window).resize(function() {
     $('.team-member-photo').height( $('.team-member-photo').width() );
   });
 
-  updateValue( $('.team-member-filter'), "Search..." );
+  // Replace .member-photo with image source
+  $('.member-photo').each(function() {
+    var src = $(this).find('img').attr('src');
+    $(this).css('background', 'url(' + src + ') no-repeat center center');
+  });
+
+  // Load team filter from hash
+  var hash = window.location.hash.replace("#", "");
+  hash = hash.toUpperCase();
+
+  switch(hash) {
+    case 'OFFICERS':
+    case 'DBF':
+    case 'ROCKSAT':
+      filterTeams(hash);
+      break;
+    default:
+      filterTeams('ALL MEMBERS');
+      break;
+  }
 
   // Toggle team filter list
   $('.team-filter-list-toggle').click(function() {
@@ -65,13 +100,8 @@ $(document).ready(function() {
   $('.team-filter-list li').click(function() {
     var val = $(this).text().toUpperCase();
     $('.team-filter-list').slideToggle();
-    updateValue( $('.team-member-filter'), val );
 
-    $('.member-title').closest('.member-group').show();
-
-    if( val !== 'ALL MEMBERS') {
-      $('.member-title:not(:contains("' + val + '"))').closest('.member-group').hide();
-    }
+    filterTeams(val);
   });
 
   // Member filter input
@@ -91,6 +121,6 @@ $(document).ready(function() {
       $(this).val("");
       $('.team-member').parent().show();
     }
-  });
+});
 
 });
