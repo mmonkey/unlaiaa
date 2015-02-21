@@ -1,0 +1,36 @@
+$dark-gray: #312f30;
+$light-gray: #ebe8e5;
+
+$color-body-text: #fff;
+$color-body-background: #050404;
+
+$color-header-primary: #fff;
+$color-header-secondary: null;
+
+$color-link-default: #fff;
+$color-link-default-hover: scale-color($color-link-default, $lightness: -14%);
+
+$color-icon-light: #f9f9f9;
+$color-icon-dark: #333;
+
+$color-hr: gray;
+$color-blockquote-border: gray;
+
+$color-nav-background: $dark-gray;
+$color-nav-link: #f9f9f9;
+$color-nav-hover: #808285;
+
+$color-social-media: #808285;
+$color-social-media-hover: #f9f9f9;
+
+
+// ==============================================
+//  BACKGROUNDS
+// ==============================================
+$space-background-1: url(../../assets/_img/space_1.jpg);
+$space-background-2: url(../../assets/_img/space_2.jpg);
+$space-background-3: url(../../assets/_img/space_3.jpg);
+$space-background-4: url(../../assets/_img/space_4.jpg);
+$space-background-5: url(../../assets/_img/space_5.jpg);
+
+$mountains-background: url(../../assets/_img/mountains.jpg);

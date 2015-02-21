@@ -1,0 +1,132 @@
+// =============================================================================
+//	Structure
+// =============================================================================
+body {
+	font-family: $font-family-primary;
+	font-weight: 300;
+	background: $color-body-background;
+	color: $color-body-text;
+	margin: 0;
+	padding: 0;
+	text-rendering: $text-rendering;
+}
+
+.row {
+	@include large {
+		max-width: rem-calc(1000);
+	}
+	@include xlarge {
+		max-width: rem-calc(1200);
+	}
+	@include xxlarge {
+		max-width: rem-calc(1400);
+	}
+}
+
+.panel {
+	padding-top: 120px;
+	padding-bottom: 120px;
+
+	&.video-background {
+		padding-top: 200px;
+		padding-bottom: 160px;
+	}
+
+	@include small-only {
+		padding-top: 80px;
+		padding-bottom: 80px;
+
+		&.video-background {
+			padding-top: 100px;
+			padding-bottom: 100px;
+		}
+	}
+}
+
+.big-title {
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	padding-top: 36px;
+	padding-bottom: 36px;
+
+	.title {
+		font-family: $font-family-third;
+		font-size: rem-calc(50);
+		font-weight: normal;
+		text-transform: uppercase;
+	}
+
+	.subtitle {
+		font-family: $font-family-primary;
+		font-size: rem-calc(36);
+		font-weight: 300;
+		font-style: italic;
+	}
+
+	@include medium-only {
+		.title {
+			font-size: rem-calc(42);
+		}
+		.subtitle {
+			font-size: rem-calc(30);
+		}
+	}
+
+	@include small-only {
+		.title {
+			font-size: rem-calc(24);
+		}
+		.subtitle {
+			font-size: rem-calc(18);
+		}
+	}
+}
+
+.btn-top-margin {
+	margin-top: 45px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 24px;
+	font-size: rem-calc(18);
+	text-transform: uppercase;
+	border: 2px solid #fff;
+
+	&:hover {
+		background: #fff;
+		color: $dark-gray;
+	}
+}
+
+.responsive-img {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.spacer {
+	padding-top: 45px;
+}
+
+@include small-only {
+	.small-margin-top {
+		margin-top: 45px;
+	}
+}
+
+.masthead {
+	text-align: center;
+	
+	.title {
+		font-family: $font-family-secondary;
+		font-size: rem-calc(60);
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.lead-text {
+		font-family: $font-family-primary;
+		font-size: rem-calc(16);
+		font-weight: 300;
+	}
+}

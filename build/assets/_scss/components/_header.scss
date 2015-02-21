@@ -1,0 +1,153 @@
+// =============================================================================
+//  header
+// =============================================================================
+header {
+  position: absolute;
+  width: 100%;
+  display: block;
+  z-index: 900;
+}
+
+.nav-toggle {
+  padding-top: 12px;
+  position: relative;
+  z-index: 902;
+}
+
+nav.dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 0;
+	display: none;
+	background: $color-nav-background;
+	text-transform: uppercase;
+  font-weight: $font-weight-light;
+  z-index: 901;
+
+	a {
+		display: block;
+		color: $color-nav-link;
+
+    &:hover {
+      color: $color-nav-hover;
+    }
+	}
+
+  @include small-only {
+    padding: 60px 0 40px 0;
+  }
+}
+
+.nav-list {
+  border-right: 1px solid #e5e5e5;
+  
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+  }
+
+  li {
+    padding: 4px 0;
+    font-size: rem-calc(10);
+  }
+
+  @include small-only {
+    border: none;
+    padding-top: 8px;
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      padding: 8px 0;
+      font-size: rem-calc(12);
+    }
+  }
+}
+
+.nav-item-featured {
+  text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-right: 1px solid #e5e5e5;
+
+  .nav-item-featured-text {
+    padding-top: 11px;
+  }
+
+  .nav-subhead, .nav-headline {
+    display: block;
+    line-height: 1.1;
+    font-size: rem-calc(9);
+  }
+
+  .nav-headline {
+    font-size: rem-calc(24);
+  }
+
+  @include small-only {
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+
+    i {
+      display: none;
+    }
+
+    .nav-item-featured-text {
+      padding-top: 0px;
+    }
+
+    .nav-subhead {
+      display: none;
+    }
+
+    .nav-headline {
+      line-height: 1.6;
+      display: block;
+      padding: 8px 0;
+      font-size: rem-calc(12);
+    }
+
+  }
+}
+
+.nav-social-media {
+  
+  i {
+    display: block;
+    color: $color-social-media;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+
+  li {
+    padding: 9px 0;
+    
+    &:hover i {
+      color: $color-social-media-hover;
+    }
+  }
+
+  @include small-only {
+    padding-top: 20px;
+
+    i {
+      padding: 0;
+    }
+    li {
+      display: block;
+      float: left;
+      padding: 0;
+      width: 33%;
+    }
+  }
+}

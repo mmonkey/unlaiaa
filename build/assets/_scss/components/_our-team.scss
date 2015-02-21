@@ -1,0 +1,178 @@
+.our-team {
+
+  .member-filter {
+    display: inline-block;
+    position: relative;
+    width: 240px;
+    padding-bottom: 40px;
+  }
+
+  .team-member-filter {
+    position: relative;
+    display: block;
+    background: $light-gray;
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem 1.25rem;
+    margin: 0;
+    width: rem-calc(204);
+    @include border-radius(5px 0 0 5px);
+
+    &:focus {
+      background: $light-gray;
+      box-shadow: none;
+    }
+  }
+
+  .team-filter-list-toggle {
+    display: block;
+    position: absolute;
+    top: 0; right: 0;
+    background: #c7bfb7;
+    height: rem-calc(37);
+    width: rem-calc(37);
+    margin: 0;
+    text-align: center;
+    color: $light-gray;
+    padding: 0.25rem;
+    cursor: pointer;
+    @include border-radius(0 5px 5px 0);
+  }
+
+  .team-filter-list {
+    display: none;
+    text-align: center;
+    margin-top: -5px;
+    padding-top: 10px;
+    background: lighten($light-gray, 5%);
+    @include border-radius(0 0 5px 5px);
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding: 3px 0;
+      text-transform: uppercase;
+      font-size: rem-calc(12);
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        background: $light-gray;
+      }
+    }
+  }
+
+  .masthead {
+    background: $space-background-5 no-repeat center center;
+    @include background-size(cover);
+  }
+
+  .members {
+    background: #fff;
+    color: $dark-gray;
+    padding-top: 60px;
+
+    [class*="column"]+[class*="column"]:last-child {
+      float: left;
+    }
+  }
+
+  .member-title {
+    text-align: center;
+    border-top: 2px solid lighten($dark-gray, 40%);
+    border-bottom: 2px solid lighten($dark-gray, 40%);
+    font-size: rem-calc(36);
+    font-family: $font-family-third;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 8px 0;
+    margin: 24px 0;
+  }
+
+  .team-member {
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  .member-photo {
+    @include background-size(cover !important);
+    position: absolute;
+    top: 10px; right: 10px; bottom: 10px; left: 10px;
+    @include border-radius(50%);
+
+    img {
+      display: none;
+    }
+  }
+
+  .member-social-link {
+    display: block;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    background: $light-gray;
+    @include border-radius(50%);
+    
+    i {
+      line-height: 30px;
+    }
+
+    &.facebook {
+      top: 50%; left: -10px;
+      margin-top: -15px;
+    }
+
+    &.twitter {
+      bottom: -10px; left: 50%;
+      margin-left: -15px;
+    }
+
+    &.linkedin {
+      top: -10px; left: 50%;
+      margin-left: -15px;
+    }
+
+    &.google-plus {
+      top: 50%; right: -10px;
+      margin-top: -15px;
+    }
+  }
+
+  .team-member-photo {
+    background: $light-gray;
+    position: relative;
+    display: inline-block;
+    max-height: 200px;
+    max-width: 200px;
+    width: 100%;
+    @include border-radius(50%);
+
+    &:hover {
+      background: $dark-gray;
+
+      .member-social-link {
+        background: $dark-gray;
+      }
+    }
+  }
+
+  .team-member-info {
+    margin-top: 18px;
+
+    .name {
+      font-weight: 600;
+      font-size: rem-calc(12);
+      text-transform: uppercase;
+      line-height: 1.125;
+    }
+    .position {
+      color: darken($light-gray, 20%);
+      font-size: rem-calc(12);
+      text-transform: uppercase;
+    }
+  }
+
+}

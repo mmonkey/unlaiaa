@@ -1,0 +1,276 @@
+// Animation
+@mixin animation($args...) {
+  $max: length($args);
+  $animations: '';
+  
+  @for $i from 1 through $max {
+    $animations: #{$animations + nth($args, $i)};
+
+      @if $i < $max {
+        $animations: #{$animations + ", "};
+      }
+  }
+  -webkit-animation: $animations;
+  -moz-animation: $animations;
+  -o-animation: $animations;
+  animation: $animations;
+}
+
+// Appearance
+@mixin appearance($args...) {
+  -webkit-appearance: $args;
+  -moz-appearance: $args;
+  appearance: $args;
+}
+
+// Background Fixed
+@mixin background-fixed($url) {
+  background-image: $url;
+  @include background-size(cover);
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+
+// Background Size
+@mixin background-size($args...) {
+  -webkit-background-size: $args;
+  -moz-background-size: $args;
+  -o-background-size: $args;
+  background-size: $args;
+}
+
+// Border Radius
+@mixin border-radius($args...) {
+  -webkit-border-radius: $args;
+  -moz-border-radius: $args;
+  -ms-border-radius: $args;
+  border-radius: $args;
+  background-clip: padding-box;
+}
+
+// Box Shadow
+@mixin box-shadow($args...) {
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  -ms-box-shadow: $args;
+  box-shadow: $args;
+}
+
+// Brightness
+@mixin brightness( $value: 1 ){
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'brightness\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'#{$value}\'/><feFuncG type=\'linear\' slope=\'#{$value}\'/><feFuncB type=\'linear\' slope=\'#{$value}\'/></feComponentTransfer></filter></svg>#brightness"); // SVG
+  -webkit-filter: brightness($value); // Webkit
+  filter: brightness($value); // Regular specification
+}
+
+// Clearfix
+@mixin clearfix() {
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+ 
+// GaussianBlur
+@mixin gaussianblur( $value: 0 ){
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'gaussianblur\'><feGaussianBlur in=\'SourceGraphic\' stdDeviation=\'#{$value}\'/></filter></svg>#gaussianblur"); // SVG
+  -webkit-filter: blur(#{$value}px); // Webkit
+  filter: brightness(#{$value}px); // Regular specification
+}
+
+// Grayscale
+@mixin grayscale( $toggle: "on", $percentage: 1 ) {
+  $svg-type: "matrix";
+  $svg-value: "0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0";
+  $ie-alpha: alpha(#{"opacity="}round( $percentage * 100 ) );
+
+  @if $percentage != 1 {
+    $svg-type: "saturate";
+    $svg-value: $percentage;
+  }
+
+  @if $toggle == "on" {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'#{$svg-type}\' values=\'#{$svg-value}\'/></filter></svg>#grayscale"); // Firefox 10+, Firefox on Android
+    filter: gray $ie-alpha; // IE6-9
+    -webkit-filter: grayscale( round( $percentage * 100% ) ); // Chrome 19+, Safari 6+, Safari 6+ iOS
+    filter: grayscale( round( $percentage * 100% ) ); // Catch-all
+  }
+
+  @if $toggle == "off" {
+    @if $svg-type == "saturate" {
+      filter: none;
+    } @else {
+      filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");
+    }
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0);
+  }
+}
+
+// Headers
+@mixin headers {
+  h1, h2, h3, h4, h5, h6 {
+    @content;
+  }
+}
+
+// Keyframes
+// args: animation name
+@mixin keyframes($args) {
+  @-webkit-keyframes #{$args} {
+    @content;
+  }
+  @-moz-keyframes #{$args} {
+    @content;
+  }
+  @-o-keyframes #{$args} {
+    @content;
+  }
+  @keyframes #{$args} {
+    @content;
+  }
+}
+
+//Opacity
+@mixin opacity($args, $i: false) {
+  $important: if($i, "!important", "");
+  $oldie: round($args * 100); 
+  -ms-filter: quote(progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$oldie})) #{$important};
+  filter: alpha(opacity=$oldie) #{$important};
+  -moz-opacity: $args #{$important};
+  -khtml-opacity: $args #{$important};
+  opacity: $args #{$important};
+}
+
+// Transparent Background with IE8 support
+@mixin transparent-bg($color, $alpha) {
+  $rgba: rgba($color, $alpha);
+  $ie-hex-str: ie-hex-str($rgba);
+  background-color: transparent;
+  zoom: 1;
+  background-color: $rgba;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+}
+
+// Transition
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+// Vertical Align
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// Breakpoints
+@mixin small-down {
+  @media only screen and (max-width: #{upper-bound($small-range)}) {
+    @content;
+  }
+}
+@mixin small {
+  @media only screen {
+    @content;
+  }
+}
+@mixin small-only {
+  @media only screen and (max-width: #{upper-bound($small-range)}) {
+    @content;
+  }
+}
+@mixin small-up {
+  @media only screen {
+    @content;
+  }
+}
+@mixin medium-down {
+  @media only screen and (max-width: #{upper-bound($medium-range)}) {
+    @content;
+  }
+}
+@mixin medium {
+  @media only screen and (min-width: #{lower-bound($medium-range)}) {
+    @content;
+  }
+}
+@mixin medium-only {
+  @media only screen and (min-width: #{lower-bound($medium-range)}) and (max-width: #{upper-bound($medium-range)}) {
+    @content;
+  }
+}
+@mixin medium-up {
+  @media only screen and (min-width: #{lower-bound($medium-range)}) {
+    @content;
+  }
+}
+@mixin large-down {
+  @media only screen and (max-width: #{upper-bound($large-range)}) {
+    @content;
+  }
+}
+@mixin large {
+  @media only screen and (min-width: #{lower-bound($large-range)}) {
+    @content;
+  }
+}
+@mixin large-only {
+  @media only screen and (min-width: #{lower-bound($large-range)}) and (max-width: #{upper-bound($large-range)}) {
+    @content;
+  }
+}
+@mixin large-up {
+  @media only screen and (min-width: #{lower-bound($large-range)}) {
+    @content;
+  }
+}
+@mixin xlarge-down {
+  @media only screen and (max-width: #{upper-bound($xlarge-range)}) {
+    @content;
+  }
+}
+@mixin xlarge {
+  @media only screen and (min-width: #{lower-bound($xlarge-range)}) {
+    @content;
+  }
+}
+@mixin xlarge-only {
+  @media only screen and (min-width: #{lower-bound($xlarge-range)}) and (max-width: #{upper-bound($xlarge-range)}) {
+    @content;
+  }
+}
+@mixin xlarge-up {
+  @media only screen and (min-width: #{lower-bound($xlarge-range)}) {
+    @content;
+  }
+}
+@mixin xxlarge-down {
+  @media only screen and (max-width: #{upper-bound($xxlarge-range)}) {
+    @content;
+  }
+}
+@mixin xxlarge {
+  @media only screen and (min-width: #{lower-bound($xxlarge-range)}) {
+    @content;
+  }
+}
+@mixin xxlarge-only {
+  @media only screen and (min-width: #{lower-bound($xxlarge-range)}) and (max-width: #{upper-bound($xxlarge-range)}) {
+    @content;
+  }
+}
+@mixin xxlarge-up {
+  @media only screen and (min-width: #{lower-bound($xxlarge-range)}) {
+    @content;
+  }
+}

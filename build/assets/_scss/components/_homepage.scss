@@ -1,0 +1,36 @@
+.mountains-background {
+  background: $mountains-background no-repeat center center;
+  @include background-size(cover);
+}
+
+.featured-link-wrap {
+  margin-bottom: 45px;
+}
+
+.featured-link {
+  padding: 45px 8px;
+  display: block;
+  border: 5px solid #fff;
+
+  .fa {
+    margin-bottom: 45px;
+  }
+
+  .link-subhead {
+    display: block;
+    font-size: rem-calc(11);
+    text-transform: uppercase;
+  }
+
+  .link-headline {
+    display: block;
+    text-transform: uppercase;
+    font-size: rem-calc(30);
+    line-height: 1.125;
+  }
+
+  &:hover {
+    color: $dark-gray;
+    background: #fff;
+  }
+}
